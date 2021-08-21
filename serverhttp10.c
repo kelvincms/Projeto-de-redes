@@ -122,9 +122,9 @@ void *connection_handler(void *socket_desc)
         if (thread_count > CONNECTION_NUMBER) // Checa se existem mais de 10 requisições, caso sim, esta requisição precisa ser recusada
         {
             //Realiza os procedimentos para recusar a requisição
-            char *message = "HTTP/1.0 400 Bad Request\r\nContent-Type: text/html\r\n\r\n<!doctype html><html><body>System is busy right now.</body></html>";
+            char *message = "HTTP/1.0 400 Bad Request\r\nContent-Type: text/html\r\n\r\n<!doctype html><html><body>System is busy right now.</body></html>\n";
             write(sock, message, strlen(message));
-            puts("Requisicao recusada \n");
+            puts("Tentativa de conexao, porem: numero de conexcoes simultaneas excedido \n");
             thread_count--;
             sem_post(&mutex);
             free(socket_desc);
@@ -158,7 +158,7 @@ void *connection_handler(void *socket_desc)
                 }
                 else // Formato não suportado
                 {
-                    char *message = "HTTP/1.0 400 Bad Request\r\nConnection: close\r\n\r\n<!doctype html><html><body>400 Bad Request. Not Supported File Type (Suppoerted File Types: html and jpeg)</body></html>";
+                    char *message = "HTTP/1.0 400 Bad Request\r\nConnection: close\r\n\r\n<!doctype html><html><body>400 Bad Request. Not Supported File Type (Supported File Types: html)</body></html>\n";
                     puts("houve uma tentativa de acesso, porem: Formato nao suportado\n");
                     write(sock, message, strlen(message));
                 }
@@ -167,7 +167,7 @@ void *connection_handler(void *socket_desc)
             }
             else // Não é uma conexão com protocolo HTTP 1.0
             {
-                char *message = "HTTP/1.0 400 Bad Request\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n<!doctype html><html><body>400 Bad Request</body></html>";
+                char *message = "HTTP/1.0 400 Bad Request\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n<!doctype html><html><body>400 Bad Request</body></html>\n";
                 puts("Houve uma tentativa de conexcao, porem: Protocolo nao suportado\n");
                 write(sock, message, strlen(message));
             }
@@ -177,8 +177,8 @@ void *connection_handler(void *socket_desc)
     {
         puts("Requisicao falhou ou o cliente se desconectou de forma abrupta");
     }
-
     //Encerra a conexão
+    sleep(50);  // Caso queira simular conexões simultâneas, descomentar esta linha
     free(socket_desc);
     shutdown(sock, SHUT_RDWR);
     close(sock);
