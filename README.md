@@ -7,9 +7,7 @@ Testado em ambiente Linux Ubuntu 20.04 (64 Bits)
 
 
 Para execução do projeto:
-alterar a variável "PATH" para ser condizente ao ambiente de execução
-
-
+   * alterar a variável "PATH" para ser condizente ao ambiente de execução
    * Compilar o servidor : gcc -pthread -o server serverhttp10.c 
    * Inicializar o servidor: ./server
    * Fechar o servidor: CTRL + C
