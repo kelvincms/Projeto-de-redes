@@ -9,6 +9,8 @@ As informações referentes as análises estão disponibilizadas na pasta de ima
 
 Caso queira testar todas as exceções e o tratamento das mesmas, basta executar o arquivo "Script.sh" 
 
+o arquivo "Teste.html" é um arquivo html qualquer usado simplesmente para testar as requisições
+
  Para execução do projeto:
    * alterar a variável "PATH" para ser condizente ao ambiente de execução
    * Compilar o servidor : gcc -pthread -o server serverhttp10.c 
