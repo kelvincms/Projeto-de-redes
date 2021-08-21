@@ -1,3 +1,4 @@
+#O código abaixo é uma refatoração da referência citada no read.me do github
 //Bibliotecas
 
 #include <stdio.h>
