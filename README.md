@@ -13,7 +13,7 @@ Para execução do projeto:
    * alterar a variável "PATH" para ser condizente ao ambiente de execução
    * Compilar o servidor : gcc -pthread -o server serverhttp10.c 
    * Inicializar o servidor: ./server
-   * Fechar o servidor: CTRL + C
+   * Fechar o servidor: CTRL + C.
 Acesso no navegador: 
    * http://localhost:8888/teste.html
 Acesso no terminal:
